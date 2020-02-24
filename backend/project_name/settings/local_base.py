@@ -26,9 +26,12 @@ AUTH_PASSWORD_VALIDATORS = []  # allow easy passwords only on local
 CELERY_TASK_ALWAYS_EAGER = True
 
 # Email
-INSTALLED_APPS += ("naomi",)
-EMAIL_BACKEND = "naomi.mail.backends.naomi.NaomiBackend"
-EMAIL_FILE_PATH = base_dir_join("tmp_email")
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Logging
 LOGGING = {
